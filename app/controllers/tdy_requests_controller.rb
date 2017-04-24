@@ -1,0 +1,2 @@
+class TdyRequestsController < ApplicationController
+end

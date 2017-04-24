@@ -1,0 +1,2 @@
+class TdyRequest < ApplicationRecord
+end

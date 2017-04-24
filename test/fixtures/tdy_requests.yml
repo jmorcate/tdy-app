@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  destination: MyString
+  purpose: MyString
+  departure: 2017-04-24 11:44:43
+  return: 2017-04-24 11:44:43
+
+two:
+  destination: MyString
+  purpose: MyString
+  departure: 2017-04-24 11:44:43
+  return: 2017-04-24 11:44:43
