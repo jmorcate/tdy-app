@@ -10,14 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170424115414) do
-
-  create_table "tdy_request_users", id: false, force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "tdy_request_id"
-    t.index ["tdy_request_id"], name: "index_tdy_request_users_on_tdy_request_id"
-    t.index ["user_id"], name: "index_tdy_request_users_on_user_id"
-  end
+ActiveRecord::Schema.define(version: 20170424134456) do
 
   create_table "tdy_requests", force: :cascade do |t|
     t.string   "destination"
@@ -26,6 +19,13 @@ ActiveRecord::Schema.define(version: 20170424115414) do
     t.datetime "return"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "tdy_requests_users", force: :cascade do |t|
+    t.integer "tdy_request_id"
+    t.integer "user_id"
+    t.index ["tdy_request_id"], name: "index_tdy_requests_users_on_tdy_request_id"
+    t.index ["user_id"], name: "index_tdy_requests_users_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

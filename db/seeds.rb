@@ -1,7 +1,14 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+cr = User.create(name:"Ronaldo", first_name:"Cristiano", email: "c.ronaldo@rm.com")
+lm = User.create(name:"Bezema", first_name:"Karim", email: "k.benzema@rm.com")
+User.create(name:"Messi", first_name:"Lionel", email: "l.messi@barca.com")
+User.create(name:"Suarez", first_name:"Luis", email: "l.suarez@braca.com")
+
+5.times do |i|
+    TdyRequest.create(
+    destination: "Dest ##{i}",
+    purpose: "Purpose ##{i}",
+    departure: DateTime.parse('3rd Feb 2001 04:05:06+03:30'),
+    return: DateTime.parse('3rd Feb 2001 04:05:06+03:30'),
+    users: [cr,lm]
+     )
+end
