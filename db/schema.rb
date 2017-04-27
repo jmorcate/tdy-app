@@ -10,15 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170424134456) do
+ActiveRecord::Schema.define(version: 20170427095933) do
 
   create_table "tdy_requests", force: :cascade do |t|
     t.string   "destination"
     t.string   "purpose"
     t.datetime "departure"
     t.datetime "return"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.boolean  "air"
+    t.boolean  "airport_service"
+    t.boolean  "train"
+    t.boolean  "pomv"
+    t.string   "other_transportation"
   end
 
   create_table "tdy_requests_users", force: :cascade do |t|

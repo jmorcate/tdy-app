@@ -14,8 +14,9 @@ module ActionView
       def datetime_select(method, options = {}, html_options = {})
         existing_time = @object.send(method) 
         formatted_time = existing_time.to_time.strftime("%F %I:%M %p") if existing_time.present?
+        options[:value] = formatted_time unless formatted_time.nil?
         @template.content_tag(:div, :class => "input-group date datetimepicker") do    
-          text_field(method, :value => formatted_time) +
+          text_field(method, options) +
           @template.content_tag(:span, @template.content_tag(:span, "", :class => "fa fa-calendar") ,:class => "input-group-addon")
         end
       end

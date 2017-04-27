@@ -19,6 +19,8 @@ class TdyRequestsController < ApplicationController
     private 
     
         def tdy_request_params
-            params.require(:tdy_request).permit(:purpose, :departure, :return, {:user_ids => []})
+            params.require(:tdy_request).permit(:purpose, :departure, :return, 
+            :air, :airport_service, :train, :pomv, :other_transportation, 
+            {:user_ids => []})
         end
 end

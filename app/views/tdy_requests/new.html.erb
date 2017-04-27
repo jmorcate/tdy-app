@@ -40,19 +40,15 @@
                 <%= f.datetime_select :return, class: 'form-control' %>
             </div>
 
-       <script type="text/javascript">
-            $(function () {
-                $('.datetimepicker').datetimepicker({
+            <script type="text/javascript">
+                $(function () {
+                    $('.datetimepicker').datetimepicker({
                     format: 'D-MMM-YYYY HH:mm'
+                    });
                 });
-            });
-        </script>
+            </script>
 
-            
-            
-            
-            
-        </div>
+        </div>  <!-- When -->
         <div id='additional' class='form-panel col-md-4'>
             <i class="fa fa-plus-square" aria-hidden="true"></i>
             <p>Additional Data?</p>
@@ -63,6 +59,20 @@
          <div id='how' class='form-panel col-md-8'>
             <i class="fa fa-suitcase" aria-hidden="true"></i>
             <p>How?</p>
+            <div id="transportation_list">
+                <ul class= "undecorated_list">
+                    <li><%= f.check_box :air %><span><i class="fa fa-plane" aria-hidden="true"></i>Air</span></li>
+                    <li><%= f.check_box :airport_service %><span><i class="fa fa-taxi" aria-hidden="true"></i>Airport Service</span></li>
+                    <li><%= f.check_box :train %><span><i class="fa fa-train" aria-hidden="true"></i>Train</span></li>
+                    <li><%= f.check_box :pomv %><span><i class="fa fa-car" aria-hidden="true"></i>POVM</span></li>
+                </ul>
+            </div>
+
+            <div class='form-group' >
+                 <%= f.label :other_transportation,"Other:" %>
+                 <%= f.text_field :other_transportation, class:'form-control' %>
+             </div>
+            
         </div>
         <div id='any_else' class='form-panel col-md-4'>
             <i class="fa fa-bullhorn" aria-hidden="true"></i>
