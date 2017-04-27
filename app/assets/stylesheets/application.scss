@@ -1,0 +1,10 @@
+@import "font-awesome-sprockets";
+@import "font-awesome";
+// import bootstrap-sprockets before bootstrap if using bootstrap >= 3.2
+@import 'bootstrap-sprockets';
+@import 'bootstrap';
+@import 'bootstrap-datetimepicker';
+.form-panel {
+    border: 2px solid #a1a1a1;
+    border-radius: 7px;
+}

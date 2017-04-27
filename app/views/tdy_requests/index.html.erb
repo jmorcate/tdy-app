@@ -1,31 +1,70 @@
 <p id="notice"><%= notice %></p>
 
+<div class="container">
 <h1>TDY Requests</h1>
 
-<table>
-  <thead>
+<table class="table table-striped">
+  <thead class="thead-inverse">
     <tr>
       <th>User</th>
       <th>Purpose</th>
       <th>Departure</th>
-      <th colspan="3"></th>
+      <th colspan="4"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @tdy_requests.each do |request| %>
       <tr>
-        <td><%= "somebody" %></td>
+        <td>
+          <%= image_tag("ronaldo.jpg", alt: "Ronaldo", class: "rounded-circle img-fluid") %>
+          <%= image_tag("messi.jpg", alt: "Ronaldo", class: "rounded-circle img-fluid") %>
+        </td>
+        
         <td><%= request.purpose %></td>
         <td><%= request.departure %></td>
-        <td><%= link_to 'Show', request %></td>
-        <td><%= link_to 'Edit', edit_tdy_request_path(request) %></td>
-        <td><%= link_to 'Destroy', request, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+
+        <td><%= link_to  request do %>
+          <span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-eye fa-stack-1x fa-inverse"></i>
+          </span>
+        <% end %>
+        </td> 
+
+
+        <td><%= link_to  edit_tdy_request_path(request) do %>
+          <span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-pencil-square-o fa-stack-1x fa-inverse"></i>
+          </span>
+        <% end %>
+        </td> 
+
+
+        <td><%= link_to  request, method: :delete, data: { confirm: 'Are you sure?' } do %>
+          <span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+          </span>
+        <% end %>
+        </td> 
+       
+        <td><%= link_to("#") do %>
+          <span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-file-pdf-o fa-stack-1x fa-inverse"></i>
+          </span>
+        <% end %>
+        </td> 
+        
+       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
 
-<%= link_to 'New Reuest?', new_tdy_request_path %>
+<%= link_to 'New Request?', new_tdy_request_path,  class: "btn btn-lg btn-primary" %>
+</div>
+
