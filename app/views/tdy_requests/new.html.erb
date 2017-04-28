@@ -71,8 +71,18 @@
             <div class='form-group' >
                  <%= f.label :other_transportation,"Other:" %>
                  <%= f.text_field :other_transportation, class:'form-control' %>
-             </div>
-            
+            </div>
+            <div id="pomv-details" >
+                <div class="form-group">
+                    <label for="sel1">Driver:</label>
+                       <select class="form-control" id="sel1" name="tdy_request[driver]">
+                          <option value="1">Cristano</option>
+                          <option value="2">Benzema</option>
+                          <option value="3">Messi</option>
+                          <option value="4">Suarez</option>
+                       </select>
+                 </div>
+            </div>
         </div>
         <div id='any_else' class='form-panel col-md-4'>
             <i class="fa fa-bullhorn" aria-hidden="true"></i>
