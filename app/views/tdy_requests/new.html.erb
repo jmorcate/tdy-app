@@ -64,7 +64,7 @@
                     <li><%= f.check_box :air %><span><i class="fa fa-plane" aria-hidden="true"></i>Air</span></li>
                     <li><%= f.check_box :airport_service %><span><i class="fa fa-taxi" aria-hidden="true"></i>Airport Service</span></li>
                     <li><%= f.check_box :train %><span><i class="fa fa-train" aria-hidden="true"></i>Train</span></li>
-                    <li><%= f.check_box :pomv %><span><i class="fa fa-car" aria-hidden="true"></i>POVM</span></li>
+                    <li><%= f.check_box :pomv, id:"pomv_check" %><span><i class="fa fa-car" aria-hidden="true"></i>POVM</span></li>
                 </ul>
             </div>
 
@@ -75,7 +75,7 @@
             <div id="pomv-details" >
                 <div class="form-group">
                     <label for="sel1">Driver:</label>
-                       <select class="form-control" id="sel1" name="tdy_request[driver]">
+                       <select class="form-control" id="sel1" name="tdy_request[driver_id]">
                           <option value="1">Cristano</option>
                           <option value="2">Benzema</option>
                           <option value="3">Messi</option>
@@ -91,3 +91,8 @@
    </div> <!-- dates and details row -->
     <%= f.submit "Create TDY Request", class: 'btn btn-primary form-control' %>
 <% end %>
+<script>
+$('#pomv_check').click(function() {
+    $('#pomv-details').css('visibility', $('#pomv_check').prop('checked')? 'visible' : 'hidden');
+});
+</script>
