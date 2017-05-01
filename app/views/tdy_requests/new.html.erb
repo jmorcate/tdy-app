@@ -6,7 +6,7 @@
 
             <% @users.each do |user| %>
                 <div>
-                    <%= check_box_tag "tdy_request[user_ids][]", user.id %>
+                    <%= check_box_tag "tdy_request[user_ids][]", user.id, false ,class:"traveller" %>
                     <%= user.name %>
                 </div>
             <% end %>
@@ -76,10 +76,7 @@
                 <div class="form-group">
                     <label for="sel1">Driver:</label>
                        <select class="form-control" id="sel1" name="tdy_request[driver_id]">
-                          <option value="1">Cristano</option>
-                          <option value="2">Benzema</option>
-                          <option value="3">Messi</option>
-                          <option value="4">Suarez</option>
+                          <option value="0"></option>
                        </select>
                  </div>
             </div>
@@ -94,5 +91,18 @@
 <script>
 $('#pomv_check').click(function() {
     $('#pomv-details').css('visibility', $('#pomv_check').prop('checked')? 'visible' : 'hidden');
+});
+$(document).ready(function() {
+    $(".traveller").click(function(event) {
+        //console.dir(this);
+        var name =this.nextSibling.data.trim();
+        if (this.checked) {
+            $('#sel1').append("<option value="+ this.value +" class='drivers'>" + name + "</option>");
+        } else {
+            $('.drivers[value="' + this.value + '"]').remove();
+        };
+
+
+    });
 });
 </script>
