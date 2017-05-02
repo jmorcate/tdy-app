@@ -1,5 +1,10 @@
 <%= form_for @tdy_request do |f| %>
+    <%= render 'shared/error_messages' %>
     <div class='row'>
+        
+        <!--
+            WHO? IDENTIFY THE PEOPLE INCLUDED IN THIS TDY REQUEST
+        -->
         <div id='who' class='form-panel col-md-4'>
             <i class="fa fa-users" aria-hidden="true"></i>
             <p>Who?</p>
@@ -11,10 +16,26 @@
                 </div>
             <% end %>
         </div>
+        
+        <!--
+            WHERE? DESTINATION AND AIRPORT AT DESTINATION IF APPLICABLE.
+        -->
         <div id='where' class='form-panel col-md-4'>
            <i class="fa fa-map-signs" aria-hidden="true"></i>
             <p>Where?</p>
+            <div class='form-group' >
+                 <%= f.label :destination %>
+                 <%= f.text_field :destination, class:'form-control' %>
+             </div>
+             <div class='form-group' >
+                 <%= f.label :destination_aiport %>
+                 <%= f.text_field :destination_airport, class:'form-control' %>
+             </div>
         </div>
+        
+        <!--
+            WHY? PURPOSE OF THE TDY 
+        -->
         <div id='why' class='form-panel col-md-4'>
            <i class="fa fa-bullseye" aria-hidden="true"></i>
             <p>Why?</p>
@@ -27,6 +48,9 @@
     
     <div class="row">
         
+         <!--
+            WHEN? WHEN the TDY AND THE MEETING START AND END.
+         -->
          <div id='when' class='form-panel col-md-8'>
             <i class="fa fa-calendar" aria-hidden="true"></i>
             <p>When?</p>
@@ -38,6 +62,14 @@
             <div class= "form_group" >
                 <%= f.label :return %>
                 <%= f.datetime_select :return, class: 'form-control' %>
+            </div>
+            <div class= "form_group" >
+                <%= f.label :meeting_start %>
+                <%= f.datetime_select :meeting_start, class: 'form-control' %>
+            </div>
+            <div class= "form_group" >
+                <%= f.label :meeting_end %>
+                <%= f.datetime_select :meeting_end, class: 'form-control' %>
             </div>
 
             <script type="text/javascript">
@@ -52,6 +84,17 @@
         <div id='additional' class='form-panel col-md-4'>
             <i class="fa fa-plus-square" aria-hidden="true"></i>
             <p>Additional Data?</p>
+            <div id="addtional_data">
+                <ul class= "undecorated_list">
+                    <li><%= f.check_box :advanced_allowance %>Advanced allowance</li>
+                    <li><%= f.check_box :official_courier %>Official Courier</li>
+                 </ul>
+            </div>
+            <div class= "form_group" >
+                <%= f.label :budget %>
+                <%= f.text_field :budget, class: 'form-control' %>
+            </div>
+
         </div>
    </div> <!-- dates and details row -->
    
@@ -84,25 +127,26 @@
         <div id='any_else' class='form-panel col-md-4'>
             <i class="fa fa-bullhorn" aria-hidden="true"></i>
             <p>Anything else to say?</p>
+            <div class='form-group' >
+                 <%= f.text_area :comments, class:'form-control' %>
+            </div>
         </div>
    </div> <!-- dates and details row -->
-    <%= f.submit "Create TDY Request", class: 'btn btn-primary form-control' %>
+    <%= f.submit "Create TDY Request", class: 'btn btn-lg btn-primary' %>
 <% end %>
 <script>
-$('#pomv_check').click(function() {
-    $('#pomv-details').css('visibility', $('#pomv_check').prop('checked')? 'visible' : 'hidden');
-});
 $(document).ready(function() {
     $(".traveller").click(function(event) {
-        //console.dir(this);
         var name =this.nextSibling.data.trim();
         if (this.checked) {
             $('#sel1').append("<option value="+ this.value +" class='drivers'>" + name + "</option>");
         } else {
             $('.drivers[value="' + this.value + '"]').remove();
         };
-
-
     });
+    $('#pomv_check').click(function() {
+        $('#pomv-details').css('visibility', $('#pomv_check').prop('checked')? 'visible' : 'hidden');
+    });
+
 });
 </script>

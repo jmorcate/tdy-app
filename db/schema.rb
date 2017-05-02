@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170428125937) do
+ActiveRecord::Schema.define(version: 20170502065426) do
 
   create_table "tdy_requests", force: :cascade do |t|
     t.string   "destination"
@@ -25,6 +25,13 @@ ActiveRecord::Schema.define(version: 20170428125937) do
     t.boolean  "pomv"
     t.string   "other_transportation"
     t.integer  "driver_id"
+    t.datetime "meeting_start"
+    t.datetime "meeting_end"
+    t.string   "destination_airport"
+    t.boolean  "advanced_allowance"
+    t.boolean  "official_courier"
+    t.string   "budget"
+    t.text     "comments"
     t.index ["driver_id"], name: "index_tdy_requests_on_driver_id"
   end
 
