@@ -16,6 +16,24 @@ class TdyRequestsController < ApplicationController
         end
     end
     
+    def show
+        @tdy_request = TdyRequest.find(params[:id])
+        respond_to do |format|
+            format.html
+            format.pdf do
+                #filename = "#{Prawn::DATADIR}/pdfs/multipage_template.pdf"
+                filename = "app/assets/pdfs/NF60.pdf"
+                # Prawn::Document.generate("full_template.pdf", :template => filename) do
+                #     text "THis content is written on the first page of the template", :align => :center
+                # end
+                #pdf = Prawn::Document.new(:template => filename)
+                pdf = TdyRequestPdf.new(:template => filename)
+                send_data pdf.render, filename: "TDY ##{@tdy_request.id}.pdf",
+                          type: "application/pdf", disposition: "inline"
+            end
+        end
+        
+    end
     private 
     
         def tdy_request_params
