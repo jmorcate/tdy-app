@@ -25,7 +25,7 @@
             <p>Where?</p>
             <div class='form-group' >
                  <%= f.label :destination %>
-                 <%= f.text_field :destination, class:'form-control' %>
+                 <%= f.text_field :destination, class:'form-control',  data: { autocomplete_source: TdyRequest.order(:destination).map(&:destination)} %>
              </div>
              <div class='form-group' >
                  <%= f.label :destination_aiport %>
@@ -147,6 +147,8 @@ $(document).ready(function() {
     $('#pomv_check').click(function() {
         $('#pomv-details').css('visibility', $('#pomv_check').prop('checked')? 'visible' : 'hidden');
     });
-
+    $("ul").click(function() {
+        console.log(this);
+    });
 });
 </script>

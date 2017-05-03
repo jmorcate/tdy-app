@@ -44,6 +44,8 @@ gem 'bootstrap3-datetimepicker-rails', '~> 4.17.47'
 gem 'prawn'
 gem 'prawn-templates'
 
+gem 'jquery-ui-rails'
+#gem 'jquery-ui-sass-rails'
 gem 'responders'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

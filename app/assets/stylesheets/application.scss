@@ -4,6 +4,13 @@
 @import 'bootstrap-sprockets';
 @import 'bootstrap';
 @import 'bootstrap-datetimepicker';
+//@import jquery.ui.all;
+@import "jquery-ui/core";
+@import "jquery-ui/base";
+@import "jquery-ui/menu";
+@import "jquery-ui/tabs";
+@import "jquery-ui/autocomplete";
+@import "jquery-ui/theme";
 .form-panel {
     border: 2px solid #a1a1a1;
     border-radius: 7px;
