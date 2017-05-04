@@ -13,11 +13,11 @@ $(document).ready(function() {
             $('.drivers[value="' + this.value + '"]').remove();
         };
     });
-    
+
     $('#pomv_check').click(function() {
         $('#pomv-details').css('visibility', $('#pomv_check').prop('checked')? 'visible' : 'hidden');
     });
-    
+
     $( "#tdy_request_destination" ).autocomplete({
       source:  $('#tdy_request_destination').data('autocomplete-source')
     });

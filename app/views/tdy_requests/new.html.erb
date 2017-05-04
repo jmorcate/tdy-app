@@ -1,7 +1,7 @@
 <%= form_for @tdy_request do |f| %>
     <%= render 'shared/error_messages' %>
     <div class='row'>
-        
+
         <!--
             WHO? IDENTIFY THE PEOPLE INCLUDED IN THIS TDY REQUEST
         -->
@@ -16,7 +16,7 @@
                 </div>
             <% end %>
         </div>
-        
+
         <!--
             WHERE? DESTINATION AND AIRPORT AT DESTINATION IF APPLICABLE.
         -->
@@ -32,9 +32,9 @@
                  <%= f.text_field :destination_airport, class:'form-control' %>
              </div>
         </div>
-        
+
         <!--
-            WHY? PURPOSE OF THE TDY 
+            WHY? PURPOSE OF THE TDY
         -->
         <div id='why' class='form-panel col-md-4'>
            <i class="fa fa-bullseye" aria-hidden="true"></i>
@@ -45,16 +45,16 @@
              </div>
         </div>
     </div> <!-- who, where and why row -->
-    
+
     <div class="row">
-        
+
          <!--
             WHEN? WHEN the TDY AND THE MEETING START AND END.
          -->
          <div id='when' class='form-panel col-md-8'>
             <i class="fa fa-calendar" aria-hidden="true"></i>
             <p>When?</p>
-            
+
             <div class= "form_group" >
                 <%= f.label :departure %>
                 <%= f.datetime_select :departure, class: 'form-control' %>
@@ -97,7 +97,7 @@
 
         </div>
    </div> <!-- dates and details row -->
-   
+
     <div class="row">
          <div id='how' class='form-panel col-md-8'>
             <i class="fa fa-suitcase" aria-hidden="true"></i>
@@ -134,5 +134,3 @@
    </div> <!-- dates and details row -->
     <%= f.submit "Create TDY Request", class: 'btn btn-lg btn-primary' %>
 <% end %>
-<script>
-</script>
