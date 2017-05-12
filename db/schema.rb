@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 20170502065426) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "tdy_requests", force: :cascade do |t|
     t.string   "destination"
     t.string   "purpose"
@@ -32,14 +35,14 @@ ActiveRecord::Schema.define(version: 20170502065426) do
     t.boolean  "official_courier"
     t.string   "budget"
     t.text     "comments"
-    t.index ["driver_id"], name: "index_tdy_requests_on_driver_id"
+    t.index ["driver_id"], name: "index_tdy_requests_on_driver_id", using: :btree
   end
 
   create_table "tdy_requests_users", force: :cascade do |t|
     t.integer "tdy_request_id"
     t.integer "user_id"
-    t.index ["tdy_request_id"], name: "index_tdy_requests_users_on_tdy_request_id"
-    t.index ["user_id"], name: "index_tdy_requests_users_on_user_id"
+    t.index ["tdy_request_id"], name: "index_tdy_requests_users_on_tdy_request_id", using: :btree
+    t.index ["user_id"], name: "index_tdy_requests_users_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -50,4 +53,5 @@ ActiveRecord::Schema.define(version: 20170502065426) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "tdy_requests", "users", column: "driver_id"
 end

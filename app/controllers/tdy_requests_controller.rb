@@ -37,10 +37,10 @@ class TdyRequestsController < ApplicationController
     private 
     
         def tdy_request_params
-            params.require(:tdy_request).permit(:purpose, :departure, :return, 
-            :air, :airport_service, :train, :pomv, :other_transportation, 
-            :driver_id, :destination, :destination_airport, :meeting_start, :meeting_end,
-            :budget, :advanced_allowance, :official_courier,:comments,
-            {:user_ids => []})
-        end
+                 params.require(:tdy_request).permit(:purpose, :departure, :return, 
+                :air, :airport_service, :train, :pomv, :other_transportation, 
+                :driver_id, :destination, :destination_airport, :meeting_start, :meeting_end,
+                :budget, :advanced_allowance, :official_courier,:comments,
+                {:user_ids => []})
+         end
 end
