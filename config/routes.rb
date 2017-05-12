@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   root 'tdy_requests#index'
   resources :tdy_requests
   resources :users
