@@ -10,10 +10,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170512095820) do
+ActiveRecord::Schema.define(version: 20170516085800) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "claims", force: :cascade do |t|
+    t.integer  "tdy_request_id"
+    t.integer  "user_id"
+    t.integer  "number_days_hotel"
+    t.boolean  "breakfast"
+    t.boolean  "meals_provided_by_location"
+    t.string   "meals_provided"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.index ["tdy_request_id"], name: "index_claims_on_tdy_request_id", using: :btree
+    t.index ["user_id"], name: "index_claims_on_user_id", using: :btree
+  end
+
+  create_table "legs", force: :cascade do |t|
+    t.string   "mode_transport"
+    t.string   "depart"
+    t.datetime "depart_time"
+    t.string   "destination"
+    t.string   "destination_time"
+    t.string   "date_time"
+    t.integer  "distance"
+    t.integer  "claim_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["claim_id"], name: "index_legs_on_claim_id", using: :btree
+  end
 
   create_table "tdy_requests", force: :cascade do |t|
     t.string   "destination"
