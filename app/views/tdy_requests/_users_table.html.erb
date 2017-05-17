@@ -1,0 +1,57 @@
+<% @tdy_requests.each do |request| %>
+  <tr>
+    <td>
+      <div class = "faces">
+        <% request.users.each_with_index do |u, index| %>
+             <%= image_tag("#{u.email}.jpg", alt: u.name, class:"img-circle indent_#{index}") %> 
+         <% end %>
+       </div>
+    </td>
+    
+    <td><%= request.purpose %></td>
+    <td><%= request.departure %></td>
+
+    <td><%= link_to  request do %>
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-eye fa-stack-1x fa-inverse"></i>
+      </span>
+    <% end %>
+    </td> 
+
+
+    <td><%= link_to  edit_tdy_request_path(request) do %>
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-pencil-square-o fa-stack-1x fa-inverse"></i>
+      </span>
+    <% end %>
+    </td> 
+
+
+    <td><%= link_to  request, method: :delete, data: { confirm: 'Are you sure?' } do %>
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+      </span>
+    <% end %>
+    </td> 
+   
+    <td><%= link_to tdy_request_path(request, format: "pdf") do %>
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-file-pdf-o fa-stack-1x fa-inverse"></i>
+      </span>
+    <% end %>
+    </td> 
+
+   <td><%= link_to "#" do %>
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-credit-card fa-stack-1x fa-inverse"></i>
+      </span>
+    <% end %>
+    </td> 
+    
+   </tr>
+<% end %>

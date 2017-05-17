@@ -2,6 +2,11 @@
 
 <div class="container">
 <h1>TDY Requests</h1>
+<!--
+<%= link_to "Only my requests", fetch_requests_url(own_requests_only: session[:own_requests_only]), remote: true %>
+-->
+<%= check_box_tag(:own_requests_only, "child") %>
+<%= label_tag(:age, "Only my requests") %>
 
 <table class="table table-striped">
   <thead class="thead-inverse">
@@ -12,70 +17,34 @@
       <th colspan="4"></th>
     </tr>
   </thead>
-
-  <tbody>
-    <% @tdy_requests.each do |request| %>
-      <tr>
-        <td>
-          <div class = "faces">
-            <% request.users.each_with_index do |u, index| %>
-                 <%= image_tag("#{u.email}.jpg", alt: u.name, class:"img-circle indent_#{index}") %> 
-             <% end %>
-           </div>
-        </td>
-        
-        <td><%= request.purpose %></td>
-        <td><%= request.departure %></td>
-
-        <td><%= link_to  request do %>
-          <span class="fa-stack fa-lg">
-            <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa fa-eye fa-stack-1x fa-inverse"></i>
-          </span>
-        <% end %>
-        </td> 
-
-
-        <td><%= link_to  edit_tdy_request_path(request) do %>
-          <span class="fa-stack fa-lg">
-            <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa fa-pencil-square-o fa-stack-1x fa-inverse"></i>
-          </span>
-        <% end %>
-        </td> 
-
-
-        <td><%= link_to  request, method: :delete, data: { confirm: 'Are you sure?' } do %>
-          <span class="fa-stack fa-lg">
-            <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
-          </span>
-        <% end %>
-        </td> 
-       
-        <td><%= link_to tdy_request_path(request, format: "pdf") do %>
-          <span class="fa-stack fa-lg">
-            <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa fa-file-pdf-o fa-stack-1x fa-inverse"></i>
-          </span>
-        <% end %>
-        </td> 
-
-       <td><%= link_to "#" do %>
-          <span class="fa-stack fa-lg">
-            <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa fa-credit-card fa-stack-1x fa-inverse"></i>
-          </span>
-        <% end %>
-        </td> 
-        
-       </tr>
-    <% end %>
-  </tbody>
+  <tbody id="tdys">
+      <%=  render partial: 'users_table' %>
+  </tbody>    
 </table>
 
 <br>
 
 <%= link_to 'New Request?', new_tdy_request_path,  class: "btn btn-lg btn-primary" %>
 </div>
-
+<script>
+$(document).ready(function() {
+  $("#own_requests_only").change(function(e) {
+      e.preventDefault();
+      console.log("here we go!");
+      console.log($(this).val());
+      console.log(this.checked)
+      $.ajax({
+          type: "GET",
+          url: "/fetch_requests",
+          data: { 
+              own_requests_only: this.checked
+          },
+          success: function(result) {
+          },
+          error: function(result) {
+              alert('error');
+          }
+      });
+  });
+});
+</script>

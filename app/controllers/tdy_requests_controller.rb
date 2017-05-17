@@ -34,6 +34,20 @@ class TdyRequestsController < ApplicationController
         end
         
     end
+    
+    def get_requests
+      
+       if (params[:own_requests_only] == "true")
+         @tdy_requests = TdyRequest.includes(:users).where(users: {email: current_user.email})  
+       else 
+         @tdy_requests = TdyRequest.all
+       end
+       respond_to do |format|
+           format.js
+       end
+    end
+    
+    
     private 
     
         def tdy_request_params
