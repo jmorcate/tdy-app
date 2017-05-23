@@ -2,12 +2,13 @@
 
 <div class="container">
 <h1>TDY Requests</h1>
-<!--
-<%= link_to "Only my requests", fetch_requests_url(own_requests_only: session[:own_requests_only]), remote: true %>
--->
-<%= check_box_tag(:own_requests_only, "child") %>
-<%= label_tag(:age, "Only my requests") %>
 
+<p class="only_my_requests">Only my requests</p>
+<label class="switch only_my_requests">
+	<input  id="own_requests_only" class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
 <table class="table table-striped">
   <thead class="thead-inverse">
     <tr>
@@ -31,7 +32,7 @@ $(document).ready(function() {
   $("#own_requests_only").change(function(e) {
       e.preventDefault();
       console.log("here we go!");
-      console.log($(this).val());
+      console.log(this.id);
       console.log(this.checked)
       $.ajax({
           type: "GET",
