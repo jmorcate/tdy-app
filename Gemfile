@@ -49,6 +49,7 @@ gem 'jquery-ui-rails'
 #gem 'jquery-ui-sass-rails'
 gem 'responders'
 gem 'devise'
+gem 'formtastic'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
