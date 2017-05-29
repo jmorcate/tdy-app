@@ -1,2 +1,14 @@
-<h1>Claims#new</h1>
-<p>Find me in app/views/claims/new.html.erb</p>
+<h1>New Claim</h1>
+<%= form_for @claim do |f| %>
+  <p>
+    Claim for : <%= f.text_field :tdy_request_id %>
+  </p>
+  <%= f.fields_for :legs do |legs_form| %>
+    <p>
+        Legs: <%= legs_form_form.text_field :depart %>
+    </p>
+  <% end %>
+  <p>
+    <%= f.submit 'Create Claim' %>
+  </p>
+<% end %>
