@@ -44,7 +44,10 @@
             </div>
             <div class="field form-group">
                 <%= f.label :distance, "Distance", class:"legs-form"  %>
-                <%= f.text_field :distance, class:"form-control  legs-form" %>
+                <div class="input-group">
+                     <%= f.text_field :distance, class:"form-control  legs-form", placeholder:"Only if Place" %>
+                     <span class="input-group-addon" id="basic-addon1">KM</span>
+                </div>
             </div>
         </div>
         
@@ -53,6 +56,7 @@
             <div class="field form-group">
                <%= f.label :expenses, "Expenses", class:"legs-form"  %>
                <%= f.text_field :expenses, class:"form-control legs-form " %>
+               <select class="form-control bfh-currencies" data-currency="EUR"></select>
             </div>
         </div>
 
