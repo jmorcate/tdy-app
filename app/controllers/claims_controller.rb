@@ -10,11 +10,13 @@ class ClaimsController < ApplicationController
 
   def create
     @claim = Claim.new(claim_params)
-
+    @claim.user_id = current_user.id
     if @claim.save
       flash[:notice] = "The <b>#{ @claim.id }</b> claim has been saved successfully."
-      redirect_to(claims_path, :notice => "The <b>#{ @clain.id }</b> claim has been saved successfully.")
+      redirect_to  tdy_requests_url
+      #redirect_to(claims_path, :notice => "The <b>#{ @clain.id }</b> claim has been saved successfully.")
     else
+      byebug
       render(:new, :error => @claim.errors)
     end
     
@@ -22,7 +24,8 @@ class ClaimsController < ApplicationController
   
   private 
     def claim_params
-      params.require(:claim).permit(:number_days_hotel, :breakfast, :meals_provided_by_location, :meals_provided, 
-        legs_attributes: [:mode_transport,:depart, :depart_time, :destination, :destination_time] )
+      params.require(:claim).permit(:tdy_request_id, :number_days_hotel, :breakfast, :meals_provided_by_location, :meals_provided, 
+        legs_attributes: [:id, :mode_transport,:depart, :depart_time, :destination, :destination_time, :_destroy] )
     end
 end
+  

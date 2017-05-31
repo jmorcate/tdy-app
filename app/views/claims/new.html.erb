@@ -1,13 +1,26 @@
 <h1>New Claim</h1>
+<p>
+  Claim for : <%= @claim.tdy_request_id %> for user <%= current_user.name %>
+</p>
 <%= form_for @claim do |f| %>
+  <%= f.hidden_field :tdy_request_id, :value => @claim.tdy_request_id %>
   <p>
-    Claim for : <%= f.text_field :tdy_request_id %>
+    Meals provided : <%= f.text_field :meals_provided %>
   </p>
-  <%= f.fields_for :legs do |legs_form| %>
-    <p>
-        Legs: <%= legs_form_form.text_field :depart %>
-    </p>
-  <% end %>
+  
+  <!-- The legs of the TDY -->
+  <h3>Legs</h3>
+
+  <div id="legs">
+    <%= f.fields_for :legs do |leg| %>
+      <%= render "leg_fields", f: leg %>
+    <% end %>
+  </div>
+       
+  <div class="links">
+    <%= link_to_add_association 'add leg',  f,  :legs,  class: 'btn btn-primary' %>
+  </div>
+
   <p>
     <%= f.submit 'Create Claim' %>
   </p>

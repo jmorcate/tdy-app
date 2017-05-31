@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 20170516085800) do
     t.datetime "depart_time"
     t.string   "destination"
     t.string   "destination_time"
-    t.string   "date_time"
+    t.string   "expenses"
     t.integer  "distance"
     t.integer  "claim_id"
     t.datetime "created_at",       null: false
