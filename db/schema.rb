@@ -18,10 +18,14 @@ ActiveRecord::Schema.define(version: 20170516085800) do
   create_table "claims", force: :cascade do |t|
     t.integer  "tdy_request_id"
     t.integer  "user_id"
+    t.string   "travel_order_num"
+    t.string   "daily_room_rate"
     t.integer  "number_days_hotel"
-    t.boolean  "breakfast"
+    t.boolean  "breakfast_included"
+    t.boolean  "other_costs"
+    t.string   "other_costs_proof"
     t.boolean  "meals_provided_by_location"
-    t.string   "meals_provided"
+    t.string   "meals_provided_list"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.index ["tdy_request_id"], name: "index_claims_on_tdy_request_id", using: :btree

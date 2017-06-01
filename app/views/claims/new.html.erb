@@ -1,16 +1,22 @@
 <h1>New Claim</h1>
-<p>
+<h2>
   Claim for : <%= @claim.tdy_request_id %> for user <%= current_user.name %>
-</p>
-<%= form_for @claim do |f| %>
+</h2>
+<%= form_for @claim  do |f| %>
   <%= f.hidden_field :tdy_request_id, :value => @claim.tdy_request_id %>
-  <p>
-    Meals provided : <%= f.text_field :meals_provided %>
-  </p>
+  
+  <div class="row" >
+    <div class="col-md-3 legs-form">
+      <div class="field form-group">
+        <%= f.label :travel_order_num, "Travel order #", class:"legs-form" %>
+        <%= f.text_field :travel_order_num, class:"form-control  legs-form" %>
+      </div>
+    </div>
+  </div>  <!-- NATO Travel Order row -->
   
   <!-- The legs of the TDY -->
   <h3>Legs</h3>
-
+  <hr>
   <div id="legs">
     <%= f.fields_for :legs do |leg| %>
       <%= render "leg_fields", f: leg %>
@@ -21,7 +27,88 @@
     <%= link_to_add_association 'add leg',  f,  :legs,  class: 'btn btn-primary' %>
   </div>
 
+  <!-- End of the legs areas. -->
+  
+  <hr>
+  <div class="row">
+    
+    <!-- Daily room rate -->
+    <div class="col-md-3 legs-form">
+      <div class="field form-group">
+        <%= f.label :daily_room_rate, "Daily Room Rate", class:"legs-form" %>
+        <%= f.text_field :daily_room_rate, class:"form-control  legs-form" %>
+      </div>
+    </div>
+    
+    <!-- Number of days in hotel -->
+    <div class="col-md-3 legs-form">
+      <div class="field form-group">
+          <%= f.label :number_days_hotel, "Number of days in Hotel", class:"legs-form" %>
+          <%= f.text_field :number_days_hotel, class:"form-control  legs-form" %>
+      </div>
+    </div>
+    
+    <!-- Breakfast included -->
+    <div class="col-md-3 ">
+        <div class="field form-group">
+          <%= f.label :breakfast_included, "Breakfast included in bill?",class:"legs-form-checkbox" %>
+          <label class="switch claims-switch">
+            <%= f.check_box :breakfast_included, class:"switch-input" %>
+      	    <span class="switch-label" data-on="Yes" data-off="No"></span> 
+      	    <span class="switch-handle"></span> 
+          </label>
+        </div>
+
+    </div>
+
+  </div>   <!-- end of the first row -->
+  
+  <div class="row">
+    <!-- Other costs -->
+    <div class="col-md-3">
+        <div class="field ">
+          <%= f.label :other_costs, "Other work realated costs",class:"legs-form-checkbox" %>
+          <label class="switch claims-switch">
+            <%= f.check_box :other_costs, class:"switch-input" %>
+      	    <span class="switch-label" data-on="Yes" data-off="No"></span> 
+      	    <span class="switch-handle"></span> 
+          </label>
+        </div>
+    </div>
+    
+     <!-- Other costs proof-->
+    <div class="col-md-8 legs-form">
+        <div class="field form-group">
+          <%= f.label :other_costs_proof, "Other work realated costs", class:"legs-form" %>
+          <%= f.text_field :other_costs_proof, class:"form-control  legs-form" %>
+        </div>
+    </div>
+  </div>
+  
+  <div class="row">
+    <!-- Meals provided at TDY Location -->
+    <div class="col-md-3">
+        <div class="field">
+          <%= f.label :meals_provided_by_location, "Meals provided at TDY Location?", class:"legs-form-checkbox" %>
+          <label class="switch claims-switch">
+            <%= f.check_box :meals_provided_by_location, class:"switch-input" %>
+      	    <span class="switch-label" data-on="Yes" data-off="No"></span> 
+      	    <span class="switch-handle"></span> 
+          </label>
+        </div>
+    </div>
+    
+
+     <!-- Which meals -->
+    <div class="col-md-8 legs-form">
+        <div class="field form-group">
+          <%= f.label :meals_provided_list, "Specify which meals", class:"legs-form" %>
+          <%= f.text_field :meals_provided_list, class:"form-control  legs-form" %>
+        </div>
+    </div>
+  </div>
+  
   <p>
-    <%= f.submit 'Create Claim' %>
+    <%= f.submit 'Create Claim',  class: 'btn btn-primary' %>
   </p>
 <% end %>

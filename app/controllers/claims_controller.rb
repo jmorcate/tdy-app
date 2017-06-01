@@ -24,8 +24,13 @@ class ClaimsController < ApplicationController
   
   private 
     def claim_params
-      params.require(:claim).permit(:tdy_request_id, :number_days_hotel, :breakfast, :meals_provided_by_location, :meals_provided, 
-        legs_attributes: [:id, :mode_transport,:depart, :depart_time, :destination, :destination_time, :_destroy] )
+      params.require(:claim).permit(
+        :tdy_request_id,  :travel_order_num, :dayly_room_rate, :number_days_hotel, 
+        :breakfast_included,:meals_provided_by_location,:meals_provided_list,
+        legs_attributes: [
+          :id, :mode_transport,:depart, :depart_time, :destination, 
+          :destination_time, :expenses, :distance, :_destroy] )
     end
 end
   
+ 

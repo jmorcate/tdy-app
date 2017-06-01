@@ -130,6 +130,9 @@
 .only_my_requests {
     float: right;
 }
+.claims-switch {
+    float: left;
+}
 p.only_my_requests {
     font-size: 200%;
     font-weight: bold;
@@ -156,4 +159,13 @@ input.legs-form {
 a.legs-form {
 	float: right;
 	vertical-align: bottom;
+}
+label.legs-form-checkbox {
+	font-family: Arial, Helvetica, sans-serif;
+	text-transform: uppercase;
+    opacity: 0.5;
+    font-size: 11px;
+    height: 16px;
+    line-height: 16px;
+    vertical-align: middle;
 }

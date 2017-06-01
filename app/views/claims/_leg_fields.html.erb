@@ -36,29 +36,35 @@
         <div class="col-md-3 legs-form">
             <div class="field form-group">
                 <%= f.label :mode_transport, "Mode Transport", class:"legs-form"  %>
-                <%= f.select :mode_transport,
-                ["AIR","TAXI","TRAIN","AIRPORT SERV.","AIRPORT SERV","POMV.", "RENTAL CAR"],
-                {include_blank: true}, 
-                {class:"form-control legs-form" } %>
+                <%= f.select :mode_transport,[],
+                    # ["AIR","TAXI","TRAIN","AIRPORT SERV.","AIRPORT SERV","POMV", "RENTAL CAR"],
+                    {include_blank: true}, 
+                    {class:"form-control legs-form" } do %>
+                        <option val="AIR">AIR</option>
+                        <option val="TAXI">TAXI</option>
+                        <option val="TRAIN">TRAIN</option>
+                        <option val="AIRPORT SERV.">AIRPORT SERV.</option>
+                        <option val="POMV">POMV</option>
+                        <option val="RENTAL CAR">RENTAL CAR</option>
+                    <% end %>
                 
             </div>
             <div class="field form-group">
                 <%= f.label :distance, "Distance", class:"legs-form"  %>
                 <div class="input-group">
-                     <%= f.text_field :distance, class:"form-control  legs-form", placeholder:"Only if Place" %>
+                     <%= f.text_field :distance, class:"form-control  legs-form", placeholder:"Only if POMV" %>
                      <span class="input-group-addon" id="basic-addon1">KM</span>
                 </div>
             </div>
         </div>
         
         <!-- Expenses -->
-        <div class="col-md-3 legs-form">
-            <div class="field form-group">
+        <div class="col-md-3 legs-form distance-select ">
+            <div class="field form-group distance-select ">
                <%= f.label :expenses, "Expenses", class:"legs-form"  %>
-               <%= f.text_field :expenses, class:"form-control legs-form " %>
-               <select class="form-control bfh-currencies" data-currency="EUR"></select>
+               <%= f.text_field :expenses, class:"form-control legs-form" %>
             </div>
-        </div>
+       </div>
 
     </div>
     <div class="row">
