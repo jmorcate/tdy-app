@@ -1,89 +1,54 @@
 <%= form_for @tdy_request do |f| %>
     <%= render 'shared/error_messages' %>
-    <div class='row'>
+    
+    
+    <!-- First row: displays the users images so you can select the users to include in the TDY Request -->
+    <div class ='row' id= "travellers-list">
+        
+        <h3><i class="fa fa-users" aria-hidden="true"></i> Who</h3>
+        <hr>
+        <% @users.each do |user| %>
+            <div class="col-md-1 form-panel traveller">
+                <%= image_tag("#{user.email}.jpg", alt: user.name, class:"img-circle traveller") %> 
+                <%= check_box_tag "tdy_request[user_ids][]", user.id, false ,class:"traveller" %>
+             </div>
+        <% end %>
 
-        <!--
-            WHO? IDENTIFY THE PEOPLE INCLUDED IN THIS TDY REQUEST
-        -->
-        <div id='who' class='form-panel col-md-4'>
-            <i class="fa fa-users" aria-hidden="true"></i>
-            <p>Who?</p>
-
-            <% @users.each do |user| %>
-                <div>
-                    <%= check_box_tag "tdy_request[user_ids][]", user.id, false ,class:"traveller" %>
-                    <%= user.name %>
-                </div>
-            <% end %>
-        </div>
-
-        <!--
-            WHERE? DESTINATION AND AIRPORT AT DESTINATION IF APPLICABLE.
-        -->
+    </div>  <!-- End of travellers list -->
+    
+    
+    <!-- Second row: displaying: where, why and addiotional data. -->
+    
+    <div class="row">
+        
         <div id='where' class='form-panel col-md-4'>
-           <i class="fa fa-map-signs" aria-hidden="true"></i>
-            <p>Where?</p>
+            
+            <h3><i class="fa fa-map-signs" aria-hidden="true"></i> Where?</h3>
+            <hr>
             <div class='form-group' >
-                 <%= f.label :destination %>
-                 <%= f.text_field :destination, class:'form-control',  data: { autocomplete_source: TdyRequest.order(:destination).map(&:destination)} %>
+                 <%= f.label :destination, class:'form-label' %>
+                 <%= f.text_field :destination, class:'form-control form-input',  data: { autocomplete_source: TdyRequest.order(:destination).map(&:destination)} %>
              </div>
              <div class='form-group' >
-                 <%= f.label :destination_aiport %>
-                 <%= f.text_field :destination_airport, class:'form-control' %>
+                 <%= f.label :destination_aiport, class:'form-label' %>
+                 <%= f.text_field :destination_airport, class:'form-control form-input' %>
              </div>
         </div>
 
-        <!--
-            WHY? PURPOSE OF THE TDY
-        -->
+
         <div id='why' class='form-panel col-md-4'>
-           <i class="fa fa-bullseye" aria-hidden="true"></i>
-            <p>Why?</p>
+           <h3><i class="fa fa-bullseye" aria-hidden="true"></i> Why?</h3>
+           <hr>
             <div class='form-group' >
-                 <%= f.label :purpose %>
-                 <%= f.text_field :purpose, class:'form-control' %>
+                 <%= f.label :purpose, class:'form-label' %>
+                 <%= f.text_field :purpose, class:'form-control form-input' %>
              </div>
         </div>
-    </div> <!-- who, where and why row -->
-
-    <div class="row">
-
-         <!--
-            WHEN? WHEN the TDY AND THE MEETING START AND END.
-         -->
-         <div id='when' class='form-panel col-md-8'>
-            <i class="fa fa-calendar" aria-hidden="true"></i>
-            <p>When?</p>
-
-            <div class= "form_group" >
-                <%= f.label :departure %>
-                <%= f.datetime_select :departure, class: 'form-control' %>
-            </div>
-            <div class= "form_group" >
-                <%= f.label :return %>
-                <%= f.datetime_select :return, class: 'form-control' %>
-            </div>
-            <div class= "form_group" >
-                <%= f.label :meeting_start %>
-                <%= f.datetime_select :meeting_start, class: 'form-control' %>
-            </div>
-            <div class= "form_group" >
-                <%= f.label :meeting_end %>
-                <%= f.datetime_select :meeting_end, class: 'form-control' %>
-            </div>
-
-            <script type="text/javascript">
-                $(function () {
-                    $('.datetimepicker').datetimepicker({
-                    format: 'D-MMM-YYYY HH:mm'
-                    });
-                });
-            </script>
-
-        </div>  <!-- When -->
+        
+        
         <div id='additional' class='form-panel col-md-4'>
-            <i class="fa fa-plus-square" aria-hidden="true"></i>
-            <p>Additional Data?</p>
+            <h3><i class="fa fa-plus-square" aria-hidden="true"></i> Additional Data?</h3>
+            <hr>
             <div id="addtional_data">
                 <ul class= "undecorated_list">
                     <li><%= f.check_box :advanced_allowance %>Advanced allowance</li>
@@ -91,29 +56,74 @@
                  </ul>
             </div>
             <div class= "form_group" >
-                <%= f.label :budget %>
-                <%= f.text_field :budget, class: 'form-control' %>
+                <%= f.label :budget, class:'form-label' %>
+                <%= f.text_field :budget, class: 'form-control  form-input' %>
             </div>
 
         </div>
+
+    </div> <!-- where, why and addiotional row -->
+
+
+    <!-- Third row: When row -->
+    <div class="row">
+        <div class='form-panel col-md-12'>
+            <h3><i class="fa fa-calendar" aria-hidden="true"></i> When?</h3>
+            <hr>
+        </div>
+         <div  class='form-panel col-md-3'>
+
+            <div class= "form_group" >
+                <%= f.label :departure, class:'form-label' %>
+                <%= f.datetime_select :departure, class: 'form-control form-input' %>
+            </div>
+            
+        </div>
+        <div class='form-panel col-md-3'>
+            <div class= "form_group" >
+                <%= f.label :return, class:'form-label' %>
+                <%= f.datetime_select :return, class: 'form-control form-input' %>
+            </div>
+        </div>
+        <div class='form-panel col-md-3'>
+            <div class= "form_group" >
+                <%= f.label :meeting_start, class:'form-label' %>
+                <%= f.datetime_select :meeting_start, class: 'form-control form-input' %>
+            </div>
+        </div>
+        <div class='form-panel col-md-3'>
+            <div class= "form_group" >
+                <%= f.label :meeting_end, class:'form-label' %>
+                <%= f.datetime_select :meeting_end, class: 'form-control form-input' %>
+            </div>
+        </div>
+        <script type="text/javascript">
+            $(function () {
+                $('.datetimepicker').datetimepicker({
+                format: 'D-MMM-YYYY HH:mm'
+                });
+            });
+        </script>
+
+ 
    </div> <!-- dates and details row -->
 
     <div class="row">
-         <div id='how' class='form-panel col-md-8'>
-            <i class="fa fa-suitcase" aria-hidden="true"></i>
-            <p>How?</p>
+         <div id='how' class='form-panel col-md-6'>
+            <h3><i class="fa fa-suitcase" aria-hidden="true"></i> How?</h3>
+            <hr>
             <div id="transportation_list">
                 <ul class= "undecorated_list">
-                    <li><%= f.check_box :air %><span><i class="fa fa-plane" aria-hidden="true"></i>Air</span></li>
-                    <li><%= f.check_box :airport_service %><span><i class="fa fa-taxi" aria-hidden="true"></i>Airport Service</span></li>
-                    <li><%= f.check_box :train %><span><i class="fa fa-train" aria-hidden="true"></i>Train</span></li>
-                    <li><%= f.check_box :pomv, id:"pomv_check" %><span><i class="fa fa-car" aria-hidden="true"></i>POVM</span></li>
+                    <li><%= f.check_box :air %> <span><i class="fa fa-plane" aria-hidden="true"></i>Air</span></li>
+                    <li><%= f.check_box :airport_service %> <span><i class="fa fa-taxi" aria-hidden="true"></i>Airport Service</span></li>
+                    <li><%= f.check_box :train %> <span><i class="fa fa-train" aria-hidden="true"></i>Train</span></li>
+                    <li><%= f.check_box :pomv, id:"pomv_check" %> <span><i class="fa fa-car" aria-hidden="true"></i>POVM</span></li>
                 </ul>
             </div>
 
             <div class='form-group' >
-                 <%= f.label :other_transportation,"Other:" %>
-                 <%= f.text_field :other_transportation, class:'form-control' %>
+                 <%= f.label :other_transportation,"Other:", class:'form-label' %>
+                 <%= f.text_field :other_transportation, class:'form-control form-input' %>
             </div>
             <div id="pomv-details" >
                 <div class="form-group">
@@ -124,11 +134,11 @@
                  </div>
             </div>
         </div>
-        <div id='any_else' class='form-panel col-md-4'>
-            <i class="fa fa-bullhorn" aria-hidden="true"></i>
-            <p>Anything else to say?</p>
+        <div id='any_else' class='form-panel col-md-6'>
+            <h3><i class="fa fa-bullhorn" aria-hidden="true"></i> Anything else to say?</h3>
+            <hr>
             <div class='form-group' >
-                 <%= f.text_area :comments, class:'form-control' %>
+                 <%= f.text_area :comments, class:'form-control form-input' %>
             </div>
         </div>
    </div> <!-- dates and details row -->

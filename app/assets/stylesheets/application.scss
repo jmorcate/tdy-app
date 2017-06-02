@@ -12,8 +12,8 @@
 @import "jquery-ui/autocomplete";
 @import "jquery-ui/theme";
 .form-panel {
-    border: 2px solid #a1a1a1;
-    border-radius: 7px;
+    // border: 2px solid #a1a1a1;
+    // border-radius: 7px;
 }
 .undecorated_list {
     list-style: none;  
@@ -174,4 +174,31 @@ label.legs-form-checkbox {
 }
 div.field {
 	margin-bottom: 5px;
+}
+.image-user {
+	width: 60px;
+	height: auto;
+}
+.traveller {
+    // margin: auto;
+    text-align: center;
+}
+div.traveller {
+    // margin: auto;
+    text-align: center;
+    padding: 5px;
+}
+label.form-label {
+	font-family: Arial, Helvetica, sans-serif;
+	text-transform: uppercase;
+    opacity: 0.5;
+    font-size: 11px;
+    height: 16px;
+    line-height: 16px;
+}
+input.form-input {
+	font-family: Arial, Helvetica, sans-serif;
+    opacity: 1;
+    color: black;
+    font-size: 18px;
 }
