@@ -53,7 +53,7 @@
         <div class="field form-group">
           <%= f.label :breakfast_included, "Breakfast included in bill?",class:"legs-form-checkbox" %>
           <label class="switch claims-switch">
-            <%= f.check_box :breakfast_included, class:"switch-input" %>
+            <%= f.check_box :breakfast_included,{class:"switch-input"}, "true", "false" %>
       	    <span class="switch-label" data-on="Yes" data-off="No"></span> 
       	    <span class="switch-handle"></span> 
           </label>
@@ -69,7 +69,7 @@
         <div class="field ">
           <%= f.label :other_costs, "Other work realated costs",class:"legs-form-checkbox" %>
           <label class="switch claims-switch">
-            <%= f.check_box :other_costs, class:"switch-input" %>
+            <%= f.check_box :other_costs,{class:"switch-input"}, "true", "false" %>
       	    <span class="switch-label" data-on="Yes" data-off="No"></span> 
       	    <span class="switch-handle"></span> 
           </label>
@@ -91,7 +91,7 @@
         <div class="field">
           <%= f.label :meals_provided_by_location, "Meals provided at TDY Location?", class:"legs-form-checkbox" %>
           <label class="switch claims-switch">
-            <%= f.check_box :meals_provided_by_location, class:"switch-input" %>
+            <%= f.check_box :meals_provided_by_location,{class:"switch-input"}, "true", "false" %>
       	    <span class="switch-label" data-on="Yes" data-off="No"></span> 
       	    <span class="switch-handle"></span> 
           </label>
