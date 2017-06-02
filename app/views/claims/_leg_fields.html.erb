@@ -1,38 +1,23 @@
 <div class='nested-fields'>
     <div class="row" >
         
-        <!-- Places -->
+        <!-- Depart -->
         <div class="col-md-3 legs-form">
             <div class="field form-group">
                 <%= f.label :depart, "Depart.Place", class:"legs-form" %>
                 <%= f.text_field :depart, class:"form-control  legs-form" %>
             </div>
-            <div class="field form-group">
-                <%= f.label :destination, "Dest.Place", class:"legs-form"  %>
-                <%= f.text_field :destination, class:"form-control  legs-form" %>
-            </div>
         </div>
         
-        <!-- Time/Date -->
+        <!-- Depart time & date -->
         <div class="col-md-3 legs-form">
             <div class="field form-group">
                 <%= f.label :depart_time, "Depart.Time", class:"legs-form"  %>
                 <%= f.datetime_select :depart_time, class:"form-control  legs-form" %>
             </div>
-            <div class="field form-group">
-                <%= f.label :destination_time, "Dest.Time", class:"legs-form"  %>
-                <%= f.datetime_select :destination_time, class:"form-control  legs-form" %>
-            </div>
-            <script type="text/javascript">
-                $(function () {
-                    $('.datetimepicker').datetimepicker({
-                    format: 'D-MMM-YYYY HH:mm'
-                    });
-                });
-            </script>
         </div>
 
-        <!-- Mode transport and distance -->
+        <!-- Mode transport  -->
         <div class="col-md-3 legs-form">
             <div class="field form-group">
                 <%= f.label :mode_transport, "Mode Transport", class:"legs-form"  %>
@@ -49,13 +34,6 @@
                     <% end %>
                 
             </div>
-            <div class="field form-group">
-                <%= f.label :distance, "Distance", class:"legs-form"  %>
-                <div class="input-group">
-                     <%= f.text_field :distance, class:"form-control  legs-form", placeholder:"Only if POMV" %>
-                     <span class="input-group-addon" id="basic-addon1">KM</span>
-                </div>
-            </div>
         </div>
         
         <!-- Expenses -->
@@ -67,13 +45,54 @@
        </div>
 
     </div>
+    
     <div class="row">
+        <!-- Places -->
+        <div class="col-md-3 legs-form">
+            <div class="field form-group">
+                <%= f.label :destination, "Dest.Place", class:"legs-form"  %>
+                <%= f.text_field :destination, class:"form-control  legs-form" %>
+            </div>
+        </div>
+        
+        <!-- Time/Date -->
+        <div class="col-md-3 legs-form">
+            <div class="field form-group">
+                <%= f.label :destination_time, "Dest.Time", class:"legs-form"  %>
+                <%= f.datetime_select :destination_time, class:"form-control  legs-form" %>
+            </div>
+            <script type="text/javascript">
+                $(function () {
+                    $('.datetimepicker').datetimepicker({
+                    format: 'D-MMM-YYYY HH:mm'
+                    });
+                });
+            </script>
+        </div>
+
+        <!-- Mode transport and distance -->
+        <div class="col-md-3 legs-form">
+            <div class="field form-group">
+                <%= f.label :distance, "Distance", class:"legs-form"  %>
+                <div class="input-group">
+                     <%= f.text_field :distance, class:"form-control  legs-form", placeholder:"Only if POMV" %>
+                     <span class="input-group-addon" id="basic-addon1">KM</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Expenses -->
+        <div class="col-md-3 legs-form  delete-leg">
         <%= link_to_remove_association  f, class: "legs-form" do %>
           <span class="fa-stack fa-lg text-danger">
             <i class="fa fa-circle fa-stack-2x "></i>
             <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
           </span>
         <% end %>
+       </div>
+        
+        
     </div>
+    
 </div>
 
